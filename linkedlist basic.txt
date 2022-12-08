@@ -1,0 +1,58 @@
+import java.util.*;
+class LL{
+    class Node{
+        String data;
+        Node next;
+        
+        Node(String data){
+            this.data=data;
+            this.next=null;
+            size++;
+        }
+    }
+    Node head;
+    int size=0;
+    public void addInMiddle(int index, String data) {
+       if(index > size || index < 0) {
+           System.out.println("Invalid Index value");
+           return;
+       }
+       size++;
+ 
+       Node newNode = new Node(data);
+       if(head == null || index == 0) {
+           newNode.next = head;
+           head = newNode;
+           return;
+       }
+        Node currNode = head;
+       for(int i=1; i<size; i++) {
+           if(i == index) {
+               Node nextNode = currNode.next;
+               currNode.next = newNode;
+               newNode.next = nextNode;
+               break;
+           }
+           currNode = currNode.next;
+       }
+   }
+   public void printlist(){
+       Node curnode = head;
+       while(curnode!=null){
+           System.out.print(curnode.data+" -> ");
+           curnode=curnode.next;
+       }
+       System.out.print("null");
+   }
+}
+public class Main{
+	public static void main(String[] args) {
+		LL list = new LL();
+		list.addInMiddle(0,"is");
+		list.addInMiddle(1,"handsome");
+		list.addInMiddle(0,"swayam");
+		list.addInMiddle(2,"so");
+		list.printlist();
+		
+	}
+}
